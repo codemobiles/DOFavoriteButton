@@ -334,6 +334,33 @@ open class DOFavoriteButton: UIButton {
         ]
     }
 
+    open func playAnimation(){
+        // remove all animations
+        circleShape.removeAllAnimations()
+        circleMask.removeAllAnimations()
+        imageShape.removeAllAnimations()
+        lines[0].removeAllAnimations()
+        lines[1].removeAllAnimations()
+        lines[2].removeAllAnimations()
+        lines[3].removeAllAnimations()
+        lines[4].removeAllAnimations()
+        
+        
+        CATransaction.begin()
+        
+        circleShape.add(circleTransform, forKey: "transform")
+        circleMask.add(circleMaskTransform, forKey: "transform")
+        imageShape.add(imageTransform, forKey: "transform")
+        
+        for i in 0 ..< 5 {
+            lines[i].add(lineStrokeStart, forKey: "strokeStart")
+            lines[i].add(lineStrokeEnd, forKey: "strokeEnd")
+            lines[i].add(lineOpacity, forKey: "opacity")
+        }
+        
+        CATransaction.commit()
+    }
+    
     fileprivate func addTargets() {
         //===============
         // add target
